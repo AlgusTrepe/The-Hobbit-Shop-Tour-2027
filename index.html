@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hobbit Shop: Tour 2027</title>
+    <!-- Tailwind CSS para un diseño moderno y adaptable -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Ocultar barra de desplazamiento manteniendo funcionalidad */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-800 font-sans antialiased h-screen flex flex-col overflow-hidden relative">
+
+    <!-- Imagen de fondo general del cuerpo -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <img src="img/bg1.jpg" alt="Fondo Tour" class="w-full h-full object-cover opacity-40">
+    </div>
+
+    <!-- 1. HEADER (Fijo arriba, no se mueve al navegar) -->
+    <header class="relative bg-slate-950 text-white shadow-md z-30 flex-shrink-0 border-b border-slate-800">
+        <div class="absolute inset-0 opacity-30 overflow-hidden pointer-events-none">
+            <img src="img/header.jpg" alt="Japón Tour" class="w-full h-full object-cover">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="bg-emerald-600 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Guía Oficial</span>
+                <div>
+                    <h1 class="text-xl font-bold">The Hobbit Shop</h1>
+                    <p class="text-emerald-400 text-xs font-medium">Tour Japón 2027</p>
+                </div>
+            </div>
+            <div class="text-xs text-slate-300 mt-2 sm:mt-0 flex items-center bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800">
+                <i class="fa-solid fa-calendar-days mr-2 text-emerald-400"></i> Duración: 17 Días de Aventura
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. CONTENEDOR PRINCIPAL (Dividido en dos columnas: Izquierda Menú / Derecha Pantalla Móvil) -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-3 sm:p-6 flex flex-col md:flex-row gap-6 overflow-hidden">
+
+        <!-- COLUMNA IZQUIERDA: Menú Interactivo (Fijo/Desplazable de forma independiente) -->
+        <section class="w-full md:w-5/12 lg:w-4/12 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 flex flex-col overflow-hidden">
+            <div class="p-4 bg-slate-900 text-white flex justify-between items-center">
+                <h2 class="font-bold text-sm tracking-wide uppercase"><i class="fa-solid fa-bars mr-2 text-emerald-400"></i>Menú de Navegación</h2>
+                <span class="text-xs bg-emerald-600 px-2 py-0.5 rounded-full font-medium">Panel</span>
+            </div>
+
+            <!-- Contenido scrollable del menú -->
+            <div class="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar">
+                
+                <!-- Dashboard / Inicio -->
+                <button onclick="showContent('dashboard')" class="nav-btn w-full text-left bg-slate-100 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-500 p-3 rounded-xl transition flex items-center space-x-3 group active-nav" data-target="dashboard">
+                    <div class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-route text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-sm block text-slate-800">Vista General y Vuelos</span>
+                        <span class="text-xs text-slate-500">Resumen del tour</span>
+                    </div>
+                </button>
+
+                <hr class="border-slate-200">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider px-1">Itinerario (Día a Día)</h3>
+
+                <!-- DÍAS 1 AL 17 (Botones Interactivos) -->
+                <div class="space-y-1.5">
+                    <!-- Día 1 -->
+                    <button onclick="showContent('day1')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day1">
+                        <span class="font-medium">Día 1: Llegada a Japón (NRT)</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 2 -->
+                    <button onclick="showContent('day2')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day2">
+                        <span class="font-medium">Día 2: Takaragawa Onsen</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 3 -->
+                    <button onclick="showContent('day3')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day3">
+                        <span class="font-medium">Día 3: Kusatsu Onsen</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 4 -->
+                    <button onclick="showContent('day4')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day4">
+                        <span class="font-medium">Día 4: Sendai</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 5 -->
+                    <button onclick="showContent('day5')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day5">
+                        <span class="font-medium">Día 5: Nagano</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 6 -->
+                    <button onclick="showContent('day6')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day6">
+                        <span class="font-medium">Día 6: Karuizawa</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 7 -->
+                    <button onclick="showContent('day7')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day7">
+                        <span class="font-medium">Día 7: Fuji</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 8 -->
+                    <button onclick="showContent('day8')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day8">
+                        <span class="font-medium">Día 8: Nikko</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 9 -->
+                    <button onclick="showContent('day9')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day9">
+                        <span class="font-medium">Día 9: Kawagoe</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 10 -->
+                    <button onclick="showContent('day10')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day10">
+                        <span class="font-medium">Día 10: Kamakura</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 11 -->
+                    <button onclick="showContent('day11')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day11">
+                        <span class="font-medium">Día 11: Shibamata</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 12 -->
+                    <button onclick="showContent('day12')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day12">
+                        <span class="font-medium">Día 12: Disney Sea</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 13 -->
+                    <button onclick="showContent('day13')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day13">
+                        <span class="font-medium">Día 13: Por Definir</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 14 -->
+                    <button onclick="showContent('day14')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day14">
+                        <span class="font-medium">Día 14: Por Definir</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 15 -->
+                    <button onclick="showContent('day15')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day15">
+                        <span class="font-medium">Día 15: Tokyo Flea Market</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 16 -->
+                    <button onclick="showContent('day16')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day16">
+                        <span class="font-medium">Día 16: Retorno Grupo 1</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <!-- Día 17 -->
+                    <button onclick="showContent('day17')" class="nav-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-100 transition flex justify-between items-center text-sm text-slate-700" data-target="day17">
+                        <span class="font-medium">Día 17: Retorno Grupo 2</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                </div>
+
+                <hr class="border-slate-200">
+
+                <!-- Sección Tips -->
+                <button onclick="showContent('tips')" class="nav-btn w-full text-left bg-amber-50 hover:bg-amber-100 border border-amber-200 p-3 rounded-xl transition flex items-center space-x-3 group" data-target="tips">
+                    <div class="w-9 h-9 rounded-full bg-amber-200 text-amber-700 flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-circle-info text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="font-semibold text-sm block text-slate-800">Tips y Logística</span>
+                        <span class="text-xs text-slate-500">Conectividad y transporte</span>
+                    </div>
+                </button>
+
+            </div>
+        </section>
+
+        <!-- COLUMNA DERECHA: Pantalla Interactiva ("Móvil" donde se muestra la info detallada) -->
+        <section class="w-full md:w-7/12 lg:w-8/12 flex flex-col items-center justify-start overflow-hidden">
+            
+            <!-- Marco simulador estilo móvil / pantalla principal de contenido -->
+            <div class="w-full max-w-md md:max-w-none h-full bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 flex flex-col overflow-hidden relative">
+                
+                <!-- Contenido dinámico (Las pantallas individuales) -->
+                <div id="content-container" class="flex-1 overflow-y-auto p-6 space-y-6">
+                    
+                    <!-- PANTALLA: DASHBOARD / VUELOS -->
+                    <div id="screen-dashboard" class="page-screen space-y-6">
+                        <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-5 rounded-xl shadow-sm">
+                            <span class="bg-white/20 text-xs px-2.5 py-1 rounded-full uppercase font-medium">Panel Principal</span>
+                            <h2 class="text-2xl font-bold mt-2">Vuelos y Logística General</h2>
+                            <p class="text-xs text-emerald-100 mt-1">Información clave de transporte aéreo para el grupo.</p>
+                        </div>
+
+                        <div class="space-y-3">
+                            <!-- Vuelo Día 1 -->
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs font-bold text-emerald-600 uppercase block">Día 1 (Llegada NRT)</span>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <img src="img/amlogo.webp" alt="Aeroméxico" class="h-4 object-contain">
+                                        <span class="text-sm font-bold text-slate-700">AM58 MEX-NRT</span>
+                                    </div>
+                                </div>
+                                <span class="bg-emerald-100 text-emerald-800 font-semibold px-2.5 py-1 rounded-lg text-xs">06:30 hrs</span>
+                            </div>
+
+                            <!-- Vuelo Día 16 -->
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs font-bold text-blue-600 uppercase block">Día 16 (Retorno Grupo 1)</span>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <img src="img/amlogo.webp" alt="Aeroméxico" class="h-4 object-contain">
+                                        <span class="text-sm font-bold text-slate-700">AM57 NRT-MEX</span>
+                                    </div>
+                                </div>
+                                <span class="bg-blue-100 text-blue-800 font-semibold px-2.5 py-1 rounded-lg text-xs">09:35 hrs</span>
+                            </div>
+
+                            <!-- Vuelo Día 17 -->
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs font-bold text-purple-600 uppercase block">Día 17 (Retorno Grupo 2)</span>
+                                    <div class="flex items-center gap-2 mt-1">
+                                        <img src="img/amlogo.webp" alt="Aeroméxico" class="h-4 object-contain">
+                                        <span class="text-sm font-bold text-slate-700">AM57 NRT-MEX</span>
+                                    </div>
+                                </div>
+                                <span class="bg-purple-100 text-purple-800 font-semibold px-2.5 py-1 rounded-lg text-xs">09:35 hrs</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-emerald-50 border border-emerald-100 rounded-xl text-xs text-emerald-800 leading-relaxed">
+                            <i class="fa-solid fa-lightbulb mr-1 text-emerald-600 font-bold"></i> <strong>Tip:</strong> Haz clic en cualquier día del menú izquierdo para consultar los detalles de rutas, dificultad y horarios específicos.
+                        </div>
+                    </div>
+
+                    <!-- PANTALLAS DE CADA DÍA (Plantilla estructurada para información detallada) -->
+                    <!-- DÍA 1 -->
+                    <div id="screen-day1" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 1 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Llegada a Japón (Narita - NRT)</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-amber-600"><i class="fa-solid fa-person-walking mr-1"></i> Moderada</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Hora de Aterrizaje</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 06:30 hrs</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Recepción en el Aeropuerto de Narita, trámites migratorios, recogida de maletas y activación de conexiones móviles. Abordaje de transporte hacia el hotel en Tokio para el registro inicial.</p>
+                        </div>
+                    </div>
+
+                   <!-- DÍA 2 -->
+    <div id="screen-day2" class="page-screen space-y-5 hidden">
+        <div class="border-b pb-3">
+            <span class="text-xs font-bold text-emerald-600 uppercase">Día 2 de 17</span>
+            <h2 class="text-xl font-bold text-slate-900">Salida desde Kamata y Traslado a Takaragawa Onsen</h2>
+        </div>
+
+        <p class="text-slate-700 text-sm leading-relaxed text-justify">
+            Continuamos con el viaje. Nuestra aventura arranca saliendo desde <strong>Kamata Station</strong>, rumbo al corazón montañoso de la prefectura de Gunma.
+        </p>
+
+        <!-- Rutas y Trayecto -->
+        <div class="space-y-2">
+            <h3 class="font-bold text-slate-800 text-sm">Rutas y Trayecto</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs border-collapse border border-slate-200">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700">
+                            <th class="border border-slate-200 p-2">Tramo</th>
+                            <th class="border border-slate-200 p-2">Medio de Transporte</th>
+                            <th class="border border-slate-200 p-2">Duración Aprox.</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-600">
+                        <tr>
+                            <td class="border border-slate-200 p-2">Kamata Station → Estación de Tokio</td>
+                            <td class="border border-slate-200 p-2">JR Keihin-Tohoku Line</td>
+                            <td class="border border-slate-200 p-2">20-25 minutos</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-slate-200 p-2">Estación de Tokio → Estación de Jomo-Kogen</td>
+                            <td class="border border-slate-200 p-2">Joetsu Shinkansen</td>
+                            <td class="border border-slate-200 p-2">75 minutos</td>
+                        </tr>
+                        <tr>
+                            <td class="border border-slate-200 p-2">Estación de Jomo-Kogen → Takaragawa Onsen</td>
+                            <td class="border border-slate-200 p-2">Autobús privado / Shuttle del ryokan</td>
+                            <td class="border border-slate-200 p-2">40 minutos</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Historia y Descripción -->
+        <div class="space-y-3 text-slate-700 text-sm leading-relaxed text-justify">
+            <h3 class="font-bold text-slate-800 text-sm">Takaragawa</h3>
+            
+            <p>
+                Según la tradición sintoísta, la historia del lugar se remonta al siglo I d.C. con el príncipe legendario Yamato Takeru. Se dice que cayó gravemente enfermo durante una campaña militar en el este y, guiado por el vuelo de un halcón blanco, descubrió las aguas termales. Tras sumergirse en ellas, se curó por completo, por lo que antiguamente el lugar se llamaba Hakutaka no Yu ("El baño del halcón blanco").
+            </p>
+
+            <p>
+                Durante el período Edo, las montañas cercanas cobraron relevancia debido al descubrimiento de importantes reservas de cobre. Las minas de la zona rebautizaron al río local como Takaragawa (que significa literalmente "Río del Tesoro").
+            </p>
+
+            <p>
+                Hoy día Takaragawa Onsen es considerado uno de los baños termales al aire libre más espectaculares y fotogénicos de todo Japón. Ubicado en el corazón montañoso de la prefectura de Gunma, dentro de la región de Minakami, destaca por sus colosales piscinas de piedra construidas directamente sobre las orillas del río Takara.
+            </p>
+
+            <p>
+                El complejo se integra de manera casi invisible con la naturaleza boscosa que lo rodea. A diferencia de los onsen modernos con azulejos o espacios cerrados, Takaragawa ofrece enormes estanques hechos con rocas de río y cantos rodados. El sonido constante del agua fluyendo, el vapor emergiendo entre los árboles y las pasarelas de madera crean una atmósfera profundamente mística y relajante.
+            </p>
+
+            <p>
+                Una de sus principales características es que el paisaje cambia drásticamente a lo largo del año. Los momentos más codiciados por los viajeros son el otoño (entre finales de octubre y noviembre), cuando el cañón se tiñe de tonos rojos y dorados intensos, y el invierno, cuando se puede disfrutar del baño rodeado de gruesas capas de nieve y hielo.
+            </p>
+
+            <p>
+                Finalmente y lo que lo hace atractivo al turismo occidental es que el onsen preserva la antigua y casi extinta tradición japonesa del baño compartido entre hombres y mujeres. Al ser obligatorio el uso del yuami-gi (prenda de baño provista por el lugar), resulta un destino sumamente cómodo e ideal para parejas extranjeras o familias que desean compartir la experiencia juntos sin separarse.
+            </p>
+        </div>
+
+        <!-- Caja de Destacados -->
+        <div class="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-lg text-amber-900 text-sm">
+            <strong>Prepárense para disfrutar de una experiencia única y relajante.</strong>
+        </div>
+    </div>
+
+                    <!-- DÍA 3 -->
+                    <div id="screen-day3" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 3 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Kusatsu Onsen (Revisita)</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-red-600"><i class="fa-solid fa-person-hiking mr-1"></i> Alta Exigencia</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 08:30 hrs Salida</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Ruta de montaña combinando tren y autobús de alta montaña con visitas guiadas al Yubatake central y recorridos por fuentes termales con propiedades curativas.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 4 -->
+                    <div id="screen-day4" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 4 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Sendai</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-amber-600"><i class="fa-solid fa-person-walking mr-1"></i> Moderada</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 09:00 hrs Shinkansen</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Viaje rápido hacia el norte usando el Shinkansen directo. Exploración de la ciudad de los árboles, sitios históricos vinculados a Date Masamune y gastronomía local de gyutan.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 5 -->
+                    <div id="screen-day5" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 5 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Nagano</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-solid fa-person-walking mr-1"></i> Fácil / Cómoda</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 09:30 hrs</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Desplazamiento a través del Hokuriku Shinkansen con visita al histórico templo Zenko-ji y alrededores tradicionales en la prefectura de Nagano.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 6 -->
+                    <div id="screen-day6" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 6 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Karuizawa</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-solid fa-person-walking mr-1"></i> Muy Fácil</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 10:00 hrs</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Trayecto corto en Shinkansen directo. Visita a callejones comerciales de estilo alpino, zonas boscosas y áreas de esparcimiento natural.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 7 -->
+                    <div id="screen-day7" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 7 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Fuji (Zona de los Cinco Lagos)</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-amber-600"><i class="fa-solid fa-person-walking mr-1"></i> Moderada</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 08:00 hrs Autobús</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Autobús expreso hacia la región de los lagos con vistas panorámicas excepcionales del Monte Fuji y puntos fotográficos clave.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 8 -->
+                    <div id="screen-day8" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 8 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Nikko</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-amber-600"><i class="fa-solid fa-person-walking mr-1"></i> Moderada (Escalinatas)</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 08:30 hrs</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Viaje en tren Tobu hacia Tochigi para recorrer santuarios declarados Patrimonio de la Humanidad por la UNESCO y puentes históricos sobre ríos boscosos.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 9 -->
+                    <div id="screen-day9" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 9 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Kawagoe (La Pequeña Edo)</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-solid fa-person-walking mr-1"></i> Fácil</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 09:30 hrs</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Desplazamiento corto desde Tokio en tren local para visitar almacenes tradicionales de la era Edo (Kurazukuri) y la famosa Calle de los Dulces.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 10 -->
+                    <div id="screen-day10" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 10 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Kamakura</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-amber-600"><i class="fa-solid fa-person-walking mr-1"></i> Moderada</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 09:00 hrs</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Viaje hacia la costa sur de Kanagawa. Visita al Gran Buda de bronce en el templo Kotoku-in, templos zen y la costa del Pacífico.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 11 -->
+                    <div id="screen-day11" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 11 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Shibamata</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-solid fa-person-walking mr-1"></i> Muy Fácil</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 10:00 hrs</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Visita a un distrito tradicional en el este de Tokio con ambiente Shitamachi, cruce en barca tradicional por el río Edogawa y visita al templo Taishakuten.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 12 -->
+                    <div id="screen-day12" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 12 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Disney Sea</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-red-600"><i class="fa-solid fa-person-hiking mr-1"></i> Alta (Caminata prolongada)</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 08:00 hrs Apertura</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Desplazamiento directo hacia la bahía de Tokio en tren Keiyo hasta la estación Maihama para disfrutar de uno de los parques temáticos más exclusivos del mundo.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 13 -->
+                    <div id="screen-day13" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 13 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Día Por Definir</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-slate-500">Por asignar</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-slate-500">Por asignar</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Espacio reservado en el itinerario para actividades complementarias, compras o descanso del grupo.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 14 -->
+                    <div id="screen-day14" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 14 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Día Por Definir</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-slate-500">Por asignar</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-slate-500">Por asignar</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Espacio reservado en el itinerario para actividades complementarias o exploración libre en Tokio.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 15 -->
+                    <div id="screen-day15" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 15 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Tokyo Flea Market</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-amber-600"><i class="fa-solid fa-person-walking mr-1"></i> Moderada</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Horario Sugerido</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-regular fa-clock mr-1"></i> 09:00 hrs</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Recorrido por mercados de pulgas y artículos vintage en Tokio para cacería de coleccionables, antigüedades y recuerdos únicos antes del cierre del viaje.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 16 -->
+                    <div id="screen-day16" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 16 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Retorno de Primer Grupo</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-solid fa-person-walking mr-1"></i> Baja / Logística</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Vuelo de Salida</span>
+                                <span class="font-semibold text-blue-600"><i class="fa-regular fa-clock mr-1"></i> 09:35 hrs (AM57)</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Traslado temprano coordinado hacia el Aeropuerto de Narita para el abordaje del vuelo de regreso AM57 NRT-MEX del primer grupo.</p>
+                        </div>
+                    </div>
+
+                    <!-- DÍA 17 -->
+                    <div id="screen-day17" class="page-screen space-y-5 hidden">
+                        <div class="border-b pb-3">
+                            <span class="text-xs font-bold text-emerald-600 uppercase">Día 17 de 17</span>
+                            <h2 class="text-xl font-bold text-slate-900">Retorno de Segundo Grupo</h2>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Dificultad de Movimiento</span>
+                                <span class="font-semibold text-emerald-600"><i class="fa-solid fa-person-walking mr-1"></i> Baja / Cierre</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                <span class="text-xs text-slate-400 block font-medium">Vuelo de Salida</span>
+                                <span class="font-semibold text-purple-600"><i class="fa-regular fa-clock mr-1"></i> 09:35 hrs (AM57)</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3 text-sm text-slate-600">
+                            <h3 class="font-bold text-slate-800"><i class="fa-solid fa-route text-emerald-600 mr-1"></i> Rutas y Trayecto</h3>
+                            <p>Último traslado coordinado hacia Narita y partida del vuelo AM57 NRT-MEX del segundo grupo, concluyendo oficialmente el tour 2027.</p>
+                        </div>
+                    </div>
+
+                    <!-- PANTALLA: TIPS Y LOGÍSTICA -->
+                    <div id="screen-tips" class="page-screen space-y-5 hidden">
+                        <div class="bg-gradient-to-r from-amber-600 to-orange-600 text-white p-5 rounded-xl shadow-sm">
+                            <span class="bg-white/20 text-xs px-2.5 py-1 rounded-full uppercase font-medium">Guía Práctica</span>
+                            <h2 class="text-2xl font-bold mt-2">Tips Esenciales</h2>
+                            <p class="text-xs text-amber-100 mt-1">Recomendaciones de conectividad y transporte general.</p>
+                        </div>
+
+                        <div class="space-y-4 text-sm text-slate-600">
+                            <div class="flex items-start space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <i class="fa-solid fa-wifi text-emerald-600 mt-1 text-lg"></i>
+                                <div>
+                                    <strong class="text-slate-800 block font-semibold">Conectividad Móvil</strong>
+                                    <p class="mt-0.5">Asegúrate de activar tu eSIM o recargar tu pocket Wi-Fi con anticipación para mantener la navegación activa al llegar a Japón.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                <i class="fa-solid fa-train text-emerald-600 mt-1 text-lg"></i>
+                                <div>
+                                    <strong class="text-slate-800 block font-semibold">Transporte Público</strong>
+                                    <p class="mt-0.5">Lleva siempre a la mano tu tarjeta Suica o Pasmo recargada digitalmente en tu smartphone para agilizar el acceso en trenes y metros.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Script de navegación interactiva entre pantallas -->
+   <script>
+    // Función principal para cambiar el contenido de la columna derecha
+    function showContent(targetId) {
+        // Ocultar todas las pantallas de contenido
+        const screens = document.querySelectorAll('.page-screen');
+        screens.forEach(screen => {
+            screen.classList.add('hidden');
+        });
+
+        // Mostrar la pantalla seleccionada
+        const targetScreen = document.getElementById('screen-' + targetId);
+        if (targetScreen) {
+            targetScreen.classList.remove('hidden');
+        }
+
+        // Actualizar estilos activos en los botones del menú
+        const buttons = document.querySelectorAll('.nav-btn');
+        buttons.forEach(btn => {
+            btn.classList.remove('bg-emerald-50', 'border-emerald-500', 'shadow-sm');
+            // Asegurarnos de que el icono también vuelva a su color original
+            const iconDiv = btn.querySelector('div');
+            if (iconDiv) {
+                iconDiv.classList.remove('bg-emerald-600', 'text-white');
+            }
+            // Restaurar color de texto del título del menú
+            const titleSpan = btn.querySelector('.font-semibold');
+            if (titleSpan) {
+                titleSpan.classList.remove('text-white');
+            }
+        });
+
+        // Aplicar estilos al botón seleccionado
+        const activeBtn = document.querySelector(`[data-target="${targetId}"]`);
+        if (activeBtn) {
+            activeBtn.classList.add('bg-emerald-50', 'border-emerald-500', 'shadow-sm');
+            const activeIconDiv = activeBtn.querySelector('div');
+            if (activeIconDiv) {
+                activeIconDiv.classList.add('bg-emerald-600', 'text-white');
+            }
+            const activeTitleSpan = activeBtn.querySelector('.font-semibold');
+            if (activeTitleSpan) {
+                activeTitleSpan.classList.add('text-white');
+            }
+        }
+    }
+
+    // CORRECCIÓN AQUÍ: Ejecutar la inicialización solo cuando el DOM esté completamente listo
+    document.addEventListener("DOMContentLoaded", function() {
+        // Intentar mostrar el dashboard por defecto
+        const defaultBtn = document.querySelector('[data-target="dashboard"]');
+        if (defaultBtn) {
+            defaultBtn.click(); // Esto simula un clic para activar los estilos y mostrar el contenido
+        } else {
+            // Fallback: si no hay botón por defecto, mostrar el primer elemento disponible
+            showContent('dashboard');
+        }
+    });
+</script>
+</body>
+</html>
